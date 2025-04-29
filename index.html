@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jolene Ariana - Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background-color: #121212;
+      --secondary-bg: #1e1e1e;
+      --card-bg: #2a2a2a;
+      --text-color: #f0f0f0;
+      --highlight-color: #e63946;
+      --secondary-highlight-color: #ff6b6b;
+      --tertiary-highlight-color: #ff9999;
+      
+      /* Light mode variables */
+      --light-background: #f5f5f5;
+      --light-secondary-bg: #ffffff;
+      --light-card-bg: #ffffff;
+      --light-text-color: #333333;
+      --light-highlight-color: #e63946;
+      --light-secondary-highlight-color: #ff6b6b;
+      --light-tertiary-highlight-color: #ff9999;
+    }
+
+    .light-mode {
+      --background-color: var(--light-background); 
+      --secondary-bg: var(--light-secondary-bg);
+      --card-bg: var(--light-card-bg);
+      --text-color: var(--light-text-color);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Space Grotesk', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(230, 57, 70, 0.1) 0%, rgba(18, 18, 18, 0) 70%);
+    }
+
+    .header-content {
+      text-align: center;
+      z-index: 1;
+      padding: 2rem;
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    .header-title {
+      font-size: 4.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--highlight-color), var(--tertiary-highlight-color));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+      animation: gradientShift 8s ease infinite;
+    }
+
+    .header-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      opacity: 0.8;
+      animation: fadeInUp 1.5s ease-out 0.5s both;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(18, 18, 18, 0.9);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .light-mode nav {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    nav.scrolled {
+      padding: 1rem 2rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-color);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-logo span {
+      color: var(--highlight-color);
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--highlight-color);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--highlight-color);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      margin-left: 1rem;
+    }
+
+    .theme-toggle:hover {
+      color: var(--highlight-color);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .section-title.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--highlight-color), var(--tertiary-highlight-color));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.8s ease;
+    }
+
+    .section-title.visible::after {
+      transform: scaleX(1);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .project-card {
+      position: relative;
+      background-color: var(--card-bg);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      height: 300px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .project-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover .project-img {
+      transform: scale(1.1);
+    }
+
+    .project-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem;
+      background: linear-gradient(to top, rgba(18, 18, 18, 0.9) 0%, rgba(18, 18, 18, 0) 100%);
+      transform: translateY(20px);
+      opacity: 0.8;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .light-mode .project-overlay {
+      background: linear-gradient(to top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    .project-card:hover .project-overlay {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .project-title {
+      color: var(--text-color);
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-number {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--highlight-color);
+      z-index: 2;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .project-tag {
+      background-color: var(--highlight-color);
+      color: var(--text-color);
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .project-card:hover .project-tag {
+      transform: scale(1.05);
+      background-color: var(--secondary-highlight-color);
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-content {
+      background-color: var(--secondary-bg);
+      max-width: 900px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      padding: 2rem;
+      position: relative;
+      transform: scale(0.9);
+      opacity: 0;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .modal.active .modal-content {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      color: var(--text-color);
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .modal-close:hover {
+      transform: rotate(90deg);
+      color: var(--highlight-color);
+    }
+
+    .modal-img {
+      width: 100%;
+      height: 400px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      border: 2px solid var(--highlight-color);
+      box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+      transition: transform 0.5s ease;
+    }
+
+    .modal-img:hover {
+      transform: scale(1.02);
+    }
+
+    .modal-gallery {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      overflow-x: auto;
+      padding-bottom: 15px;
+    }
+
+    .modal-gallery img {
+      height: 100px;
+      width: auto;
+      object-fit: cover;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease, border 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .modal-gallery img.active {
+      border: 2px solid var(--highlight-color);
+      transform: scale(1.05);
+    }
+
+    .modal-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .modal-title {
+      color: var(--tertiary-highlight-color);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .modal-title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--highlight-color);
+      transition: width 0.5s ease;
+    }
+
+    .modal-content:hover .modal-title::after {
+      width: 100%;
+    }
+
+    .modal-desc {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+
+    .modal-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .modal-nav-btn {
+      background-color: var(--highlight-color);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .modal-nav-btn:hover {
+      background-color: var(--secondary-highlight-color);
+    }
+
+    .modal-nav-btn:disabled {
+      background-color: #555;
+      cursor: not-allowed;
+    }
+
+    .info-section {
+      padding: 5rem 0;
+      background-color: var(--secondary-bg);
+      margin-top: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 30%, rgba(230, 57, 70, 0.1) 0%, rgba(30, 30, 30, 0) 70%);
+      z-index: 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .info-card {
+      background-color: var(--card-bg);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .info-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .info-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .info-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--highlight-color);
+      position: relative;
+      display: inline-block;
+    }
+
+    .info-card h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--highlight-color);
+      transition: width 0.3s ease;
+    }
+
+    .info-card:hover h2::after {
+      width: 100%;
+    }
+
+    .experience-item, .education-item {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .light-mode .experience-item, .light-mode .education-item {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .experience-item:last-child, .education-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .experience-item h3, .education-item h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+
+    .date {
+      font-size: 0.9rem;
+      color: var(--highlight-color);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .role, .degree, .focus {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: var(--tertiary-highlight-color);
+    }
+
+    .description {
+      font-size: 1rem;
+      line-height: 1.6;
+      opacity: 0.8;
+    }
+
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-category {
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-category h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--tertiary-highlight-color);
+    }
+
+    .skill-category ul {
+      list-style: none;
+    }
+
+    .skill-category li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .skill-category li::before {
+      content: '•';
+      color: var(--highlight-color);
+      position: absolute;
+      left: 0;
+      font-size: 1.2rem;
+    }
+
+    .quote-section {
+      padding: 5rem 0;
+      background-color: var(--secondary-bg);
+      margin-top: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 30%, rgba(230, 57, 70, 0.1) 0%, rgba(30, 30, 30, 0) 70%);
+      z-index: 0;
+    }
+
+    .quote-container {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .quote-container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .quote {
+      font-size: 2rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding: 0 2rem;
+    }
+
+    .quote::before, .quote::after {
+      content: '"';
+      font-size: 4rem;
+      color: var(--highlight-color);
+      opacity: 0.3;
+      position: absolute;
+    }
+
+    .quote::before {
+      top: -20px;
+      left: 0;
+    }
+
+    .quote::after {
+      bottom: -40px;
+      right: 0;
+    }
+
+    .quote-author {
+      font-size: 1.2rem;
+      color: var(--tertiary-highlight-color);
+    }
+
+    .footer {
+      background-color: var(--secondary-bg);
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 30%, rgba(230, 57, 70, 0.1) 0%, rgba(30, 30, 30, 0) 70%);
+      z-index: 0;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-link {
+      color: var(--text-color);
+      font-size: 1.5rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--card-bg);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .social-link:hover {
+      color: var(--highlight-color);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(230, 57, 70, 0.3);
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Floating hearts animation */
+    .floating-heart {
+      position: absolute;
+      color: var(--highlight-color);
+      opacity: 0.2;
+      z-index: 0;
+      animation: float 15s linear infinite;
+    }
+
+    /* Keyframe Animations */
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.2;
+      }
+      50% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        transform: translateX(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--secondary-bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--highlight-color);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--secondary-highlight-color);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .header-title {
+        font-size: 3rem;
+      }
+
+      .header-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      }
+
+      .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+      }
+
+      .modal-img {
+        height: 300px;
+      }
+
+      .modal-title {
+        font-size: 1.5rem;
+      }
+
+      .modal-desc {
+        font-size: 1rem;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Mobile menu */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 101;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      height: 100vh;
+      background-color: var(--secondary-bg);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: right 0.5s ease;
+      box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu .nav-link {
+      margin: 1rem 0;
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-btn {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">J<span>A</span></a>
+    <div class="nav-links">
+      <a href="#" class="nav-link">Home</a>
+      <a href="#info" class="nav-link">About</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <button id="themeToggle" class="theme-toggle">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#" class="nav-link">Home</a>
+    <a href="#info" class="nav-link">About</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    <button id="mobileThemeToggle" class="theme-toggle">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+
+  <!-- Header Section -->
+  <header class="header">
+    <div class="header-content">
+      <h1 class="header-title">Jolene Ariana</h1>
+      <p class="header-subtitle">Interior Architecture & Design | Biophilic Design</p>
+    </div>
+    <!-- Floating hearts will be added by JavaScript -->
+  </header>
+
+  <!-- Info Section -->
+  <section id="info" class="info-section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <h2>Work Experience</h2>
+          <div class="experience-item">
+            <h3>DB&B (Design and Build)</h3>
+            <p class="date">July 19 to October 4, 2023</p>
+            <p class="role">Assistant Interior Designer Intern</p>
+            <p class="description">Actively participated in 3D modeling facades in SketchUp and adjusting lighting in Enscape renders.</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h2>Education</h2>
+          <div class="education-item">
+            <h3>Nanyang Academy of Fine Arts</h3>
+            <p class="date">May 2024 - May 2026</p>
+            <p class="degree">Bachelor of Arts (Honors) Biophilic Design</p>
+            <p class="description">Learning about nature based solutions to harmonize urban living with the natural world.</p>
+          </div>
+          <div class="education-item">
+            <h3>Temasek Polytechnic</h3>
+            <p class="date">April 2021 - April 2024</p>
+            <p class="degree">Diploma in Interior Architecture and Design</p>
+            <p class="description">Learned basic fundamentals of interior design and architecture. Developed software skills and mastered creative thinking abilities.</p>
+          </div>
+          <div class="education-item">
+            <h3>Seng Kang Secondary School</h3>
+            <p class="date">January 2016 - January 2020</p>
+            <p class="focus">Art Student</p>
+            <p class="description">Focused on art to develop drawing skills to enhance future designs and creative thinking.</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h2>Skills</h2>
+          <div class="skills-container">
+            <div class="skill-category">
+              <h3>Adobe</h3>
+              <ul>
+                <li>Adobe Photoshop</li>
+              </ul>
+            </div>
+            
+            <div class="skill-category">
+              <h3>Modeling</h3>
+              <ul>
+                <li>SketchUp</li>
+                <li>Revit</li>
+                <li>3D Max</li>
+              </ul>
+            </div>
+            
+            <div class="skill-category">
+              <h3>Rendering</h3>
+              <ul>
+                <li>Enscape</li>
+              </ul>
+            </div>
+            
+            <div class="skill-category">
+              <h3>Others</h3>
+              <ul>
+                <li>AutoCAD</li>
+                <li>Grasshopper</li>
+                <li>Rhino</li>
+                <li>PowerPoint</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="container">
+    <h2 class="section-title">My Projects</h2>
+    <div class="projects-grid" id="projectsGrid">
+      <!-- Projects will be inserted by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section class="quote-section">
+    <div class="quote-container">
+      <blockquote class="quote">
+        "ARCHITECTURE IS LIKE WRITING. YOU HAVE TO EDIT IT OVER AND OVER UNTIL IT BECOMES EFFORTLESS."
+      </blockquote>
+      <cite class="quote-author">- Zaha Hadid</cite>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer id="contact" class="footer">
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/jolene-ariana-b67462212/" class="social-link"><i class="fab fa-linkedin"></i></a>
+      <a href="#" class="social-link" onclick="copyEmail(event)">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <p id="copy-message" style="display:none; color: green; margin-top: 10px;">Email copied to clipboard!</p>
+    </div>
+    <p class="copyright">© 2024 Jolene Ariana. All rights reserved.</p>
+  </footer>
+
+  <!-- Project Modal -->
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <h2 class="modal-title" id="modalTitle">Project Title</h2>
+      <img src="/placeholder.svg" alt="Project" class="modal-img" id="modalImg">
+      <div class="modal-gallery" id="modalGallery">
+        <!-- Thumbnail images will be inserted here -->
+      </div>
+      <p class="modal-desc" id="modalDesc">Project description goes here.</p>
+      <div class="modal-nav">
+        <button class="modal-nav-btn" id="prevProject">Previous Project</button>
+        <button class="modal-nav-btn" id="nextProject">Next Project</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Project data
+    const projects = [
+      {
+        id: '01',
+        title: "Ridin': Cycle Community Hub",
+        description: `This was the project I was most proud of. Introducing,
+Ridin': the cycle community hub. With the goal of
+sustainable cities and communities, i targeted 11-6, to
+reduce the environmental impact of Singapore.
+I wanted to meet the needs of the cycling community as
+they are a target audience we don't usually cater to.
+There have been road accidents due to cyclist being
+careless, which reduced public's interest in wanting to
+take up cycling. 
+
+I have proposed my space to meet their
+needs and at the same time, celebrate the sport of
+cycling and make it seen to all.
+I had a lot of fun for my final project and it was very
+memorable. With the skills i gained during internship, I
+managed to carry that on for my final project. This is a
+project i will treasure for a long time.`,
+        images: [
+            'images/project_one_image2.png',
+            'images/project_one_image1.png',
+            'images/project_one_image3.png',
+            'images/project_one_image4.png',
+            'images/project_one_image5.png',
+            'images/project_one_image6.png',
+            'images/project_one_image7.png'
+        ],
+        tags: ["Interior Design", "Sustainable Design", "Community Space"]
+      },
+      {
+        id: '02',
+        title: 'Grid',
+        description: `I was exploring form in sketchup for architectural
+purposes. With the numerous amount for green spaces
+and voids, it is naturally ventilated and really
+sustainable.
+i wanted to test the skills i gained from my internship
+and explored by creating a grid building in sketchup. i
+love to explore during my free time and see how far i
+can go, thus i came up with this creation.`,
+        images: [
+            'images/project_two_image1.png',
+            'images/project_two_image2.png',
+            'images/project_two_image3.png',
+            'images/project_two_image4.png',
+            'images/project_two_image5.png',
+        ],
+        tags: ["Architecture", "SketchUp", "Sustainable Design"]
+      },
+      {
+        id: '03',
+        title: 'Zen',
+        description: `During my first internship programme, I managed to
+polish my skills in sketchup and learnt a rendering
+software called Enscape. During my free time, I tested
+my skills out and modelled an office space from scratch.
+this exploration was not only to test my skills, but to
+also understand design principals in an office space.
+in this space, I integrated the outdoors and indoors. this
+was to induce the phycology of introducing nature
+within our spaces to improve mental health and
+wellbeing of people at the workplace. additionally, i
+designed using warm tones, Zen atmosphere and a
+biophilic working environment.
+Though this space was just to experiment, it helped me
+understood the importance of how a workplace should
+be design and taking note of a person's wellbeing in an
+office space as well. phycological needs have to be met
+in order for a spiritual, vibrant and peaceful mindset.`,
+        images: [
+            'images/project_three_image7.png',
+            'images/project_three_image2.png',
+            'images/project_three_image3.png',
+            'images/project_three_image4.png',
+            'images/project_three_image5.png',
+            'images/project_three_image6.png',
+            'images/project_three_image1.png',
+            'images/project_three_image8.png',
+            'images/project_three_image9.png',
+        ],
+        tags: ["Office Design", "Biophilic Design", "Enscape"]
+      },
+      {
+        id: '04',
+        title: 'Pantry Design',
+        description: `This was another project i did during my free time in
+        internship. Since my company focuses on office spaces, i
+        decided to practice pantry designs. i came up with this
+        design to practice my Sketchup and Enscape skills.
+        working on this small area, i realised how fast i
+        modelled this space in sketchup. This software is very
+        versatile and 3d warehouse made it very easy to install
+        furnitures and lightings. i also practised rendering in
+        enscape for details like the light flare and illumination.
+        the light fixtures on the open ceiling gave an illusion
+        that its lit and bright. i achieved that through
+        illuminating material and adjusting visual settings in
+        Enscape`,
+        images: [
+            'images/project_four_image1.png',
+            'images/project_four_image2.png',
+            'images/project_four_image3.png',
+        ],
+        tags: ["Pantry Design", "SketchUp", "Enscape"]
+      },
+      {
+        id: '05',
+        title: 'Bar',
+        description: `This was an assignment assigned by my lecturer to
+explore 3d max features and create an interior, inspired
+by a real-life project. I got inspired by an unknown bar I
+found on ArchDaily, and decided to model it up and
+tweak the design.
+I love biophilic and nature inspired buildings. I try to
+input a lot of biophilic structures and elements into my
+designs. I experimented with lightings and adjusted
+certain materials and furnitures accordingly. I was
+satisfied with my design.
+Personally, I find that 3d max takes really long in
+producing a full render. If time was limited, it would be
+difficult to work with 3D max.`,
+        images: [
+            'images/project_five_image3.png',
+            'images/project_five_image2.png',
+            'images/project_five_image1.png'
+        ],
+        tags: ["Bar Design", "3D Max", "Biophilic Design"]
+      },
+      {
+        id: '06',
+        title: '"AADN" Dance Studio',
+        description: `This was a project i took on to help my cousin renovate
+his very own dance studio. i asked my cousin how he
+envisioned his future studio to be like and he gave me a
+list of what he wanted in it. A green screen studio,
+person open space office and vinyl floor dance area.
+i began modelling out his site, and began to strategise
+on where i should place the specific areas he mentioned.
+i also added a pantry for his students to grab a drink or
+bite after a tiring dance session.
+This design was a modern take on an integrated dance
+and green screen studio. with a black open ceiling
+fixture, a mix of wood, vinyl and carpet flooring to
+seperate the spaces accordingly. The personal open
+space office has a foldable, modular wall that achieves
+the personal and yet open feel of the office. i also
+designed a moss logo wall that proudly showcases his
+company's name and a comfortable seating area.
+Overal, my cousin was very satisfied with the design and
+has considered to go about my design.`,
+        images: [
+            'images/project_six_image3.png',
+            'images/project_six_image2.png',
+            'images/project_six_image1.png',
+            'images/project_six_image4.png',
+            'images/project_six_image5.png',
+            'images/project_six_image6.png',
+        ],
+        tags: ["Dance Studio", "Commercial Design", "Modular Design"]
+      },
+      {
+        id: '07',
+        title: 'Custom Room Set-Up',
+        description: `This was another side project i took to help one of my
+friends visualise his design. He was moving house and it
+underwent renovation. for his room, he drew out his
+custom set up and showed it to me. As he had no idea
+how to visualise it in his room, i decided to step in and
+help him out.
+I first modelled his room interior in sketchup and then
+modelled his set up. It was an integrated sliding door
+closet with a table that consist of drawers. on top of it
+were a tv and floating shelves attached to the wall.
+beside it is an integrated dressing cabinet with a mirror
+attached to the wall. My friend requested that the
+material should all be plywood. I followed his
+instructions and helped to visualise his set up in his
+room by doing up some renders.
+i went beyond and decided to do construction drawings
+as well. this was also to test my skills in Autocad and
+the ability in making quality construction and detail
+drawings.`,
+        images: [
+            'images/project_seven_image4.png',
+            'images/project_seven_image2.png',
+            'images/project_seven_image3.png',
+            'images/project_seven_image1.png'
+        ],
+        tags: ["Residential Design", "Custom Furniture", "AutoCAD"]
+      },
+      {
+        id: '08',
+        title: 'Facade',
+        description: `This was a self exploration assignment assigned by my
+lecturer to explore the Revit features and to make a
+facade. here I tried to experiment with a curve like
+structure surrounding the facade and added a curve
+glass parametric design as the roof. it was to explore the
+shadows and sunlight for the interior, hence the glass
+roof.
+Personally, I found Revit as a software to make
+structured buildings. I find it useful for making
+construction details however it limits creativity and
+room to go beyond. Creating the interior was another
+tedious job as downloading furnitures take a lot of time.
+hence, i came to a conclusion that Revit is useful for
+facade purposes but not interior purposes.`,
+        images: [
+            'images/project_eight_image1.png',
+            'images/project_eight_image2.png',
+            'images/project_eight_image3.png',
+            'images/project_eight_image4.png',
+            'images/project_eight_image5.png',
+            'images/project_eight_image6.png',
+        ],
+        tags: ["Facade Design", "Revit", "Parametric Design"]
+      },
+      {
+        id: '09',
+        title: 'Trifecta Cafe',
+        description: `This was my first intergrated studio project. the client
+was scape orhcard and we had to design an area for
+youths. Since scape was in a bad condition for a long
+time, temasek polytechnic IAD students partnered with
+scape to create a space for youths.
+With little background on architecture and interior
+design, I experimented the elevated form of cubes in
+sketchup and made it into a structure. This space
+includes a cafe with elevated platforms to go up the
+structure where level 2 includes seating areas with
+whiteboards for youths to draw and write anything they
+want.
+It also includes a space where users build furnitures out
+of building blocks for seating. this was to induce
+creativity and freedom in my structure. As users go up
+to level 3, it is a grass area where users can have picnics
+and enjoy the view way up. This whole space was to test
+my creativity and storyboarding skills for a professional
+presentation. i enjoyed the first project i got but i wished
+to had better software and rendering skills to showcase
+my work properly at this time.
+`,
+        images: [
+            'images/project_nine_image3.png',
+            'images/project_nine_image2.png',
+            'images/project_nine_image1.png',
+            'images/project_nine_image4.png',
+            'images/project_nine_image5.png',
+            'images/project_nine_image6.png',
+            'images/project_nine_image7.png',
+        ],
+        tags: ["Cafe Design", "Youth Space", "Multi-level Design"]
+      },
+      {
+        id: '10',
+        title: 'Terrace View',
+        description: `This project was my second integrated studio project.
+we collaborated with Apex Lodge nursing home and
+designed a nursing home for patients with dementia. In
+this project, we had to do reports on dementia and
+really understand the users before designing the space.
+my approach was inspired by the concept of paddy
+fields to imitate the kampung background knowledge
+for dementia patients.
+Each level had terraces of green fields where patients
+can step out and enjoy the sun. I wanted to break the
+boundaries of outdoor and indoor, and integrated the
+two into this structure. the cascading structures gave
+patients oppourtunity to step out and enjoy being
+outdoors rather than trapped indoors. My strategy was
+to also make it a loop so that dementia patients can
+walk around but within the perimeters of the home. this
+was to give them empowerment of their home and
+freedom to roam. I used Revit to model my structure
+and photoshop to render my plans`,
+        images: [
+            'images/project_ten_image1.png',
+            'images/project_ten_image2.png',
+            'images/project_ten_image3.png',
+            'images/project_ten_image4.png',
+            'images/project_ten_image5.png'
+        ],
+        tags: ["Healthcare Design", "Dementia Care", "Biophilic Design"]
+      },
+      {
+        id: '11',
+        title: 'Concept Models',
+        description: `Concept models were part of my design process, to
+understand form, light and shadow. I experimented and
+went all out in models as creativity was not limited. the
+following physical models were concept models to assist
+my structure's abstract form. As for the porous
+shadows, it was created by a moss patch that i found in
+an art store and it gave an interesting atmosphere and
+feel into the model.
+i used different coloured plastics to mimic coloured
+stained glass and shone light onto it to create colourful
+shadows. it was a fun play between light and shadows.
+These models shown were concept models inspired from
+the pores and negative spaces between tree branches.
+inspired by how it gives an abstract form and how each
+negative space is a different shape, I built these concept
+models to further emphasise on it.
+`,
+        images: [
+            'images/project_eleven_image2.png',
+            'images/project_eleven_image1.png',
+            'images/project_eleven_image3.png',
+            'images/project_eleven_image4.png',
+            'images/project_eleven_image5.png',
+            'images/project_eleven_image6.png'
+        ],
+        tags: ["Physical Models", "Concept Design", "Light & Shadow"]
+      },
+      {
+        id: '12',
+        title: 'Hand Drawings',
+        description: `In my first year in this course, we had to take lessons on
+practising our hand drawing skills. Here i wanted to
+show that i could use a variety of media to portray
+drawings. I have used pen, pencil, colour pencils and
+markers.
+The ability to mix media and use a variety of drawing
+media was to showcase that, I can portray my ideas in
+any form of media and it would still be understandable.
+In this fast pace technological world, technology and AI
+will soon take over and start to do these jobs for us.
+However, if we had a situation where we had to draw on
+the spot and showcase an idea we have to the client, i
+can use my hand drawings skills, pick up any form of
+media, and sketch my idea out swiftly, Hence, i find it
+useful that I have this skill as a designer.`,
+        images: [
+            'images/project_twelve_image3.png',
+            'images/project_twelve_image2.png',
+            'images/project_twelve_image1.png',
+        ],
+        tags: ["Hand Drawing", "Mixed Media", "Concept Sketches"]
+      }
+    ];
+
+    // DOM Elements
+    const projectsGrid = document.getElementById('projectsGrid');
+    const modal = document.getElementById('projectModal');
+    const modalClose = document.querySelector('.modal-close');
+    const modalImg = document.getElementById('modalImg');
+    const modalGallery = document.getElementById('modalGallery');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const prevProjectBtn = document.getElementById('prevProject');
+    const nextProjectBtn = document.getElementById('nextProject');
+    const navbar = document.getElementById('navbar');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const themeToggle = document.getElementById('themeToggle');
+    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+    const sectionTitles = document.querySelectorAll('.section-title');
+    const infoCards = document.querySelectorAll('.info-card');
+    const quoteContainer = document.querySelector('.quote-container');
+
+    let currentProjectIndex = 0;
+
+    // Create project cards
+    projects.forEach((project, index) => {
+      const projectCard = document.createElement('div');
+      projectCard.className = 'project-card';
+      projectCard.setAttribute('data-index', index);
+      
+      projectCard.innerHTML = `
+        <img src="${project.images[0]}" alt="${project.title}" class="project-img">
+        <div class="project-number">${project.id}</div>
+        <div class="project-overlay">
+          <h3 class="project-title">${project.title}</h3>
+          <div class="project-tags">
+            ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+          </div>
+        </div>
+      `;
+      
+      projectCard.addEventListener('click', () => {
+        openProjectModal(index);
+      });
+      
+      projectsGrid.appendChild(projectCard);
+    });
+
+    // Event Listeners
+    modalClose.addEventListener('click', () => {
+      closeModal();
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    prevProjectBtn.addEventListener('click', () => {
+      navigateProject(-1);
+    });
+
+    nextProjectBtn.addEventListener('click', () => {
+      navigateProject(1);
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (modal.classList.contains('active')) {
+        if (e.key === 'Escape') {
+          closeModal();
+        } else if (e.key === 'ArrowLeft') {
+          navigateProject(-1);
+        } else if (e.key === 'ArrowRight') {
+          navigateProject(1);
+        }
+      }
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      
+      // Check if elements are in viewport for animations
+      checkVisibility();
+    });
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.mobile-menu .nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Theme toggle
+    themeToggle.addEventListener('click', toggleTheme);
+    mobileThemeToggle.addEventListener('click', toggleTheme); 
+
+    // Functions
+    function openProjectModal(index) {
+      const project = projects[index];
+      currentProjectIndex = index;
+      
+      // Set modal content
+      modalTitle.textContent = project.title;
+      modalDesc.textContent = project.description;
+      modalImg.src = project.images[0];
+      modalImg.alt = project.title;
+      
+      // Create gallery thumbnails
+      modalGallery.innerHTML = '';
+      project.images.forEach((img, i) => {
+        const thumbnail = document.createElement('img');
+        thumbnail.src = img;
+        thumbnail.alt = `${project.title} - Image ${i+1}`;
+        if (i === 0) thumbnail.classList.add('active');
+        
+        thumbnail.addEventListener('click', () => {
+          document.querySelectorAll('#modalGallery img').forEach(thumb => {
+            thumb.classList.remove('active');
+          });
+          thumbnail.classList.add('active');
+          modalImg.src = img;
+        });
+        
+        modalGallery.appendChild(thumbnail);
+      });
+      
+      // Update navigation buttons
+      updateNavigationButtons();
+      
+      // Show modal
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function navigateProject(direction) {
+      let newIndex = currentProjectIndex + direction;
+      
+      if (newIndex < 0) {
+        newIndex = projects.length - 1;
+      } else if (newIndex >= projects.length) {
+        newIndex = 0;
+      }
+      
+      openProjectModal(newIndex);
+    }
+
+    function updateNavigationButtons() {
+      prevProjectBtn.disabled = false;
+      nextProjectBtn.disabled = false;
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+      
+      const isDarkMode = !document.body.classList.contains('light-mode');
+      themeToggle.innerHTML = isDarkMode ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+      mobileThemeToggle.innerHTML = isDarkMode ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+    }
+
+    // Create floating hearts for background animation
+    function createFloatingHearts() {
+      const header = document.querySelector('.header');
+      const numberOfHearts = 20;
+      
+      for (let i = 0; i < numberOfHearts; i++) {
+        const heart = document.createElement('i');
+        heart.classList.add('fas', 'fa-heart', 'floating-heart');
+
+        
+        // Random positioning and animation
+        const size = Math.random() * 30 + 10;
+        const left = Math.random() * 100;
+        const animationDuration = Math.random() * 15 + 10;
+        const animationDelay = Math.random() * 10;
+        
+        heart.style.fontSize = `${size}px`;
+        heart.style.left = `${left}%`;
+        heart.style.bottom = '-50px';
+        heart.style.animationDuration = `${animationDuration}s`;
+        heart.style.animationDelay = `${animationDelay}s`;
+        
+        header.appendChild(heart);
+      }
+    }
+
+    // Check if elements are in viewport for animations
+    function checkVisibility() {
+      // Animate section titles
+      sectionTitles.forEach(title => {
+        if (isInViewport(title)) {
+          title.classList.add('visible');
+        }
+      });
+      
+      // Animate project cards
+      document.querySelectorAll('.project-card').forEach((card, index) => {
+        if (isInViewport(card)) {
+          setTimeout(() => {
+            card.classList.add('visible');
+          }, index * 100); // Staggered animation
+        }
+      });
+      
+      // Animate info cards
+      infoCards.forEach((card, index) => {
+        if (isInViewport(card)) {
+          setTimeout(() => {
+            card.classList.add('visible');
+          }, index * 100); // Staggered animation
+        }
+      });
+      
+      // Animate quote
+      if (isInViewport(quoteContainer)) {
+        quoteContainer.classList.add('visible');
+      }
+    }
+
+    // Check if element is in viewport
+    function isInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.9 &&
+        rect.bottom >= 0
+      );
+    }
+
+    // Smooth scrolling for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    function copyEmail(event) {
+    event.preventDefault(); // Prevent default anchor behavior
+    const email = "joleneariana05@gmail.com"; 
+
+    navigator.clipboard.writeText(email).then(function() {
+      const msg = document.getElementById("copy-message");
+      msg.style.display = "block";
+      
+      // Optionally hide the message after 3 seconds
+      setTimeout(() => {
+        msg.style.display = "none";
+      }, 3000);
+    }).catch(function(err) {
+      console.error("Failed to copy email: ", err);
+    });
+  }
+    // Initialize
+    createFloatingHearts();
+    
+    // Initialize animations on load
+    window.addEventListener('load', () => {
+      checkVisibility();
+    });
+  </script>
+</body>
+</html>
